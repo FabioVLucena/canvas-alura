@@ -1,0 +1,138 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext ('2d');
+	
+	pincel.fillStyle = 'lightgray';
+	pincel.fillRect(0, 0, 600, 400);
+	
+	var raio = 10;
+	var xAleatorio = sorteiaPosicao(600);
+	var xAleatorio2 = sorteiaPosicao(600);
+	var xAleatorio3 = sorteiaPosicao(600);
+	var xAleatorio4 = sorteiaPosicao(600);
+	
+	function desenhaCirculo(x, y, raio, cor){
+		
+		pincel.fillStyle = cor;
+		pincel.beginPath();
+		pincel.arc(x, y, raio, 0, 2 * Math.PI);
+		pincel.fill();
+		
+	}	
+	
+	function desenhaCirculo2(x, y, raio, cor){
+		
+		pincel.fillStyle = cor;
+		pincel.beginPath();
+		pincel.arc(xAleatorio, y, raio, 0, 2 * Math.PI);
+		pincel.fill();
+		
+	}
+	
+	function sorteiaPosicao(maximo) {
+		
+        return Math.floor(Math.random() * maximo);
+
+    }
+	//
+	
+	var y = 0;
+
+	function atualizaTela() {
+	
+		if (y == 400){
+			
+			pincel.fillStyle = 'lightgray';
+			pincel.fillRect(xAleatorio - 11, 0, 20, 400);
+			y = 0;
+			xAleatorio = sorteiaPosicao(600);
+			return xAleatorio;
+		}else{
+			
+			desenhaCirculo(xAleatorio, y, 8, "red");
+		    y++;	
+		    return xAleatorio;
+		
+		}
+		 
+	} 
+	//
+	
+	var y2 = 0;
+	
+	function atualizaTela2() {
+		
+		if (y2 == 400){
+			
+			pincel.fillStyle = 'lightgray';
+			pincel.fillRect(xAleatorio2 - 11, 0, 20, 400);
+			y2 = 0;
+			xAleatorio2 = sorteiaPosicao(600);
+			return xAleatorio2;
+		}else{
+			
+			desenhaCirculo(xAleatorio2, y2, 8, "red");
+		    y2++;	
+		    return xAleatorio2;
+		    
+		}
+		 
+	} 
+	//
+	
+	var y3 = 0;
+	
+	function atualizaTela3() {
+		
+		if (y3 == 400){
+			
+			pincel.fillStyle = 'lightgray';
+			pincel.fillRect(xAleatorio3 - 11, 0, 20, 400);
+			y3 = 0;
+			xAleatorio3 = sorteiaPosicao(600);
+			return xAleatorio3;
+			
+		}else{
+			
+			desenhaCirculo(xAleatorio3, y3, 8, "red");
+		    y3++;	
+		    return xAleatorio;
+		    
+		}
+		 
+	} 
+	//
+	
+	var y4 = 0;
+	
+	function atualizaTela4() {
+		
+		if (y4 == 400){
+			
+			pincel.fillStyle = 'lightgray';
+			pincel.fillRect(xAleatorio4 - 11, 0, 20, 400);
+			y4 = 0;
+			xAleatorio4 = sorteiaPosicao(600);
+			return xAleatorio4;
+		}else{
+			
+			desenhaCirculo(xAleatorio4, y4, 8, "red");
+		    y4++;	
+		    return xAleatorio4;
+		    
+		}
+		 
+	} 
+	
+	setInterval(atualizaTela, 1);
+	setInterval(atualizaTela2, 1);
+	setInterval(atualizaTela3, 1);
+	setInterval(atualizaTela4, 1);
+	
+	
+	
+	
+</script>
