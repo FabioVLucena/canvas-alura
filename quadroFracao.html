@@ -1,0 +1,40 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
+    
+    var totalCont = 0;
+    var parteCont = 0;
+    	
+    function desenhaQuadrado(x, y, tamanho, total, parte) {
+        // aqui precisamos usar fillRect, strokeRect, etc 
+    	 
+		while(parteCont < parte){
+     		
+     		pincel.fillStyle = 'darkGreen';
+     		pincel.fillRect(x, y, tamanho, tamanho);
+     		pincel.strokeStyle = 'black';
+        	pincel.strokeRect(x, y, tamanho, tamanho);
+     		
+        	x = x + tamanho;
+        	parteCont++;
+     		
+     	}
+        
+        while(totalCont < total){
+       
+    		pincel.strokeStyle = 'black';
+        	pincel.strokeRect(x, y, tamanho, tamanho);
+        	
+        	x = x - tamanho;     	
+     		totalCont++;
+        }
+	}
+    
+    	desenhaQuadrado(30, 150, 50, 6, 2);
+    
+</script>

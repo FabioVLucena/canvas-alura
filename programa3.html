@@ -1,0 +1,74 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d');
+	
+	pincel.fillStyle = 'grey';
+	pincel.fillRect(0, 0, 600, 400);
+	
+	var tamanho = 10;
+	
+	var mouse = onmousedown;
+		if (onmousedown){
+			alert('Pegou');
+		}
+	
+	function desenhaCirculo(evento){
+		
+		var x = evento.pageX - tela.offsetLeft;
+		var y = evento.pageY - tela.offsetTop;
+		pincel.fillStyle = cor[contCor];
+		pincel.beginPath();
+		pincel.arc(onmousedown, onmouseup, tamanho, 0, 2 * 3.14);
+		pincel.fill();
+		console.log(x + ',' + y);
+		
+			///if(evento.shiftKey){
+			///pincel.fillStyle = cor[contCor];
+			///pincel.beginPath();
+			///pincel.arc(x, y, 30, 0, 2 * 3.14);
+			///pincel.fill();
+			///}
+		
+			///if (evento.shiftKey && evento.altKey) {
+            ///alert('Só aperte uma tecla por vez, por favor!');
+        	///} else if(evento.shiftKey && raio + 10 <= 40) {
+            ///raio = raio + 10;
+       	 	///} else if(evento.altKey && raio - 5 >= 10) {
+            ///raio = raio - 5;
+        	///}
+			
+			
+			if (evento.shiftKey){
+			tamanho = tamanho + 10;
+			}
+			if (evento.altKey){
+			tamanho = tamanho - 5;
+			}
+			if (tamanho > 40){
+				tamanho = 40;
+			}
+			if (tamanho < 10){
+				tamanho = 10;
+			}
+	}
+	
+	tela.onclick = desenhaCirculo;
+	
+	var contCor = 0;
+	var cor = ['blue','green','black'];
+	function mudaCor() {
+		
+		contCor++;
+ 	
+        if (contCor >= cor.length){
+        contCor = 0; 
+        }
+        alert(cor[contCor]);
+    }
+
+
+    tela.oncontextmenu = mudaCor;
+
+</script>
