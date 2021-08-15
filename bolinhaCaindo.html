@@ -56,18 +56,16 @@
 	
 	function atualizaTela2() {
 		
-		if (y2 == 400){
+		if (y2 == 420){
 			
-			pincel.fillStyle = 'lightgray';
-			pincel.fillRect(xAleatorio2 - 11, 0, 20, 400);
 			y2 = 0;
 			xAleatorio2 = sorteiaPosicao(600);
 			return xAleatorio2;
 		}else{
-			
+			desenhaCirculo(xAleatorio2, y2, 10, "lightgray");
 			desenhaCirculo(xAleatorio2, y2, 8, "red");
 		    y2++;	
-		    return xAleatorio2;
+		    
 		    
 		}
 		 
@@ -78,19 +76,16 @@
 	
 	function atualizaTela3() {
 		
-		if (y3 == 400){
+		if (y3 == 420){
 			
-			pincel.fillStyle = 'lightgray';
-			pincel.fillRect(xAleatorio3 - 11, 0, 20, 400);
 			y3 = 0;
 			xAleatorio3 = sorteiaPosicao(600);
 			return xAleatorio3;
-			
 		}else{
-			
+			desenhaCirculo(xAleatorio3, y3, 10, "lightgray");
 			desenhaCirculo(xAleatorio3, y3, 8, "red");
 		    y3++;	
-		    return xAleatorio;
+		    return xAleatorio3;
 		    
 		}
 		 

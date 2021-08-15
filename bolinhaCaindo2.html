@@ -1,0 +1,145 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var tela =document.querySelector ('canvas');
+	var pincel = tela.getContext ('2d');
+	
+	pincel.fillStyle = 'lightgray';
+	pincel.fillRect (0, 0, 600, 400);
+	
+	function desenhaCirculo(x, y, raio, cor){
+		
+		pincel.fillStyle = cor;
+		pincel.beginPath();
+		pincel.arc(x, y, raio, 0, 2 * Math.PI);
+		pincel.fill();
+		
+	}	
+	
+	function sorteiaPosicao(){
+	
+		return Math.floor(Math.random() * 600);
+		
+	}
+	
+	
+	// QUANTIDADE DE BOLINHAS
+	var quantidade = parseInt(prompt("Quantas bolinhas você vai adicionar?"));
+	
+	
+	//  POSIÇÕES ALEATORIAS
+	var posicoes = [];
+	
+		sorteiaNumeros(quantidade);
+	
+		console.log(posicoes);
+	
+	function sorteiaNumeros(quantidade) {
+		
+		var numeroBolinhas = 1;
+		
+        while(numeroBolinhas <= quantidade) {
+				
+        	var numeroAleatorio = sorteiaPosicao();
+        	var achou = false;
+        	
+        	if (numeroAleatorio !== 0){
+        		for(var posicao = 0; posicao < posicoes.length; posicao++){
+        			
+        			if( (numeroAleatorio > posicoes[posicao] - 50) 
+        				&& (numeroAleatorio < posicoes[posicao] + 50)){
+        				
+        				achou = true;
+        				break;
+        			}        			
+        		}
+        			if (achou == false){
+        				posicoes.push(numeroAleatorio);
+        				numeroBolinhas++
+        			}
+        	}
+    	}
+    }
+	
+	
+	// DESENHA BOLINHAS
+	var y = 0;
+	function desenhaBolinhas() {
+		
+			var perdeu = false;
+			var n = 0;
+		
+			while(n < quantidade){	
+				
+				if ((posicoes[n] <= xQuadrado + 28)
+						&& (posicoes[n] >= xQuadrado - 8)
+						&& (y <= yQuadrado + 10)
+						&& (y >= yQuadrado - 2)){
+						
+						perdeu = true;
+						alert("Voce perdeu!!");
+						break;
+					}			
+				
+			if (y == 420){
+			
+			y = 0;
+			
+			posicoes = [];
+			sorteiaNumeros(quantidade);
+			
+			}else{
+				
+			desenhaCirculo(posicoes[n], y - (quantidade) , 10, "lightgray");
+			desenhaCirculo(posicoes[n], y, 8, "red");
+		    y++;
+			n++;
+		}
+	}
+} 
+	setInterval(desenhaMovimento, 20);
+	setInterval(desenhaBolinhas, 20);
+	
+//QUADRADO CONTROLAVEL
+	
+	var xQuadrado = 280;
+    var yQuadrado = 360;
+    
+    var esquerda = 37;
+    var direita = 39;
+	
+    var taxa = 20;
+	
+    function desenhaQuadrado(xQuadrado, yQuadrado) {
+
+        pincel.fillStyle = 'blue';
+        pincel.fillRect (xQuadrado, yQuadrado, 20, 20);
+    }
+	
+    function desenhaMovimento(){
+    	
+    	pincel.fillStyle = 'lightgray';
+    	pincel.fillRect(0, 0, 600, 400);
+    	
+    	desenhaQuadrado(xQuadrado, yQuadrado);
+    }
+    
+    
+    
+    function leDoTeclado(evento) {
+
+        if (evento.keyCode == esquerda) {
+
+        	xQuadrado = xQuadrado - taxa;
+
+        } else if (evento.keyCode == direita) {
+
+        	xQuadrado = xQuadrado + taxa;
+        }
+    }
+
+   document.onkeydown = leDoTeclado;
+
+
+</script>
